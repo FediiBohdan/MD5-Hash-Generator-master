@@ -2,7 +2,7 @@
 #include <iostream>
 
 using namespace std;
-class MD5  
+    class MD5
 {  
 public:
     MD5();

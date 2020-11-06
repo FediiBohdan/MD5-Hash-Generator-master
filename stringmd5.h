@@ -7,7 +7,7 @@
 using namespace std;
 
 namespace Ui {
-class stringMD5;
+    class stringMD5;
 }
 
 class stringMD5 : public QDialog
@@ -19,12 +19,10 @@ public:
     ~stringMD5();
     QString savefilepath;
     string plaintext;
+
 private slots:
-
     void on_buttonBox_accepted();
-
     void on_pushButton_clicked();
-    
     void on_pushButton_2_clicked();
 
 private:
