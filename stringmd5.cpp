@@ -1,12 +1,15 @@
 #include "stringmd5.h"
 #include "ui_stringmd5.h"
-#include"qmessagebox.h"
-#include"qtextstream.h"
+#include "qmessagebox.h"
+#include "qtextstream.h"
+#include "qfiledialog.h"
+#include "MD5.h"
+
+#include "iostream"
+
 #include <string>
 #include <QFile>
-#include"qfiledialog.h"
-#include"MD5.h"
-#include"iostream"
+
 using namespace std;
 
 stringMD5::stringMD5(QWidget *parent) :
@@ -46,9 +49,9 @@ void stringMD5::on_pushButton_clicked()
 
 void stringMD5::on_pushButton_2_clicked()
 {
-    savefilepath = QFileDialog::getSaveFileName(this,tr("Save file"),"~",tr("Text File (*.txt)"));
+    savefilepath = QFileDialog::getSaveFileName(this, tr("Save file"), "~", tr("Text File (*.txt)"));
     QFile file(savefilepath);
-    file.open( QIODevice::ReadWrite|QIODevice::Append);
+    file.open(QIODevice::ReadWrite|QIODevice::Append);
     QTextStream out(&file);
     if(!ui->lineEdit_2->text().isEmpty()){
         out << "String Encrypted: "<<QString::fromStdString(plaintext) <<"\n";
@@ -60,7 +63,7 @@ void stringMD5::on_pushButton_2_clicked()
      }
     else
     {
-        QMessageBox::warning(NULL,"Error","文件保存失败！",QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        QMessageBox::warning(NULL, "Error", "File save failed！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
     }
     file.close();
 }

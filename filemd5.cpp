@@ -1,10 +1,13 @@
 #include "filemd5.h"
 #include "ui_filemd5.h"
-#include"qfiledialog.h"
-#include"qtextstream.h"
-#include"MD5.h"
+#include "qfiledialog.h"
+#include "qtextstream.h"
+#include "MD5.h"
+
+#include "iostream"
+
 #include <qmessagebox.h>
-#include"iostream"
+
 using namespace std;
 
 filemd5::filemd5(QWidget *parent) :
@@ -31,7 +34,7 @@ void filemd5::on_buttonBox_accepted()
 
 void filemd5::on_toolButton_clicked()
 {
-    openfilepath = QFileDialog::getOpenFileName(this,tr("Open file"),"~",tr("All file (*.*)"));
+    openfilepath = QFileDialog::getOpenFileName(this, tr("Open file"), "~", tr("All file (*.*)"));
     ui->textEdit->setText(openfilepath);
 }
 
@@ -50,14 +53,14 @@ void filemd5::on_pushButton_clicked()
     }
     else
     {
-        QMessageBox::warning(NULL,"Error","File does not exist",QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        QMessageBox::warning(NULL, "Error", "File does not exist", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         ui->textEdit->clear();
     }
 }
 
 void filemd5::on_pushButton_2_clicked()
 {
-    savefilepath = QFileDialog::getSaveFileName(this,tr("Save file"),"~",tr("Text File (*.txt)"));
+    savefilepath = QFileDialog::getSaveFileName(this, tr("Save file"), "~", tr("Text File (*.txt)"));
     QFile file(savefilepath);
     file.open( QIODevice::ReadWrite| QIODevice::Append);
     QTextStream out(&file);
@@ -71,7 +74,7 @@ void filemd5::on_pushButton_2_clicked()
      }
     else
     {
-        QMessageBox::warning(NULL,"Error","Failed saving text!",QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        QMessageBox::warning(NULL, "Error", "Failed saving text!", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
     }
     file.close();
 }

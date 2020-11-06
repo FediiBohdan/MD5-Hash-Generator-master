@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT += core gui
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -25,21 +25,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    stringmd5.cpp \
-    MD5.cpp \
-    filemd5.cpp \
-    bruteforce.cpp
+        stringmd5.cpp \
+        MD5.cpp \
+        filemd5.cpp \
+        bruteforce.cpp
 
 HEADERS  += mainwindow.h \
-    stringmd5.h \
-    MD5.h \
-    filemd5.h \
-    bruteforce.h
+         stringmd5.h \
+         MD5.h \
+         filemd5.h \
+         bruteforce.h
 
-FORMS    += mainwindow.ui \
-    stringmd5.ui \
-    filemd5.ui \
-    bruteforce.ui
+FORMS   += mainwindow.ui \
+        stringmd5.ui \
+        filemd5.ui \
+        bruteforce.ui
 
 DISTFILES +=
 
