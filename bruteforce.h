@@ -2,7 +2,7 @@
 #define BRUTEFORCE_H
 
 #include <QDialog>
-#include<string>
+#include <string>
 using namespace std;
 
 namespace Ui {
@@ -17,10 +17,10 @@ public:
     explicit BruteForce(QWidget *parent = 0);
     ~BruteForce();
     QString ciphertext;
-    string lower="abcdefghijklmnopqrstuvwxyz";
-    string upper="ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    string number="1234567890";
-    string symbol="!@#$%^&*";
+    string lower = "abcdefghijklmnopqrstuvwxyz";
+    string upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    string number = "1234567890";
+    string symbol = "!@#$%^&*";
 signals:
     void updateText(QString msg);
 

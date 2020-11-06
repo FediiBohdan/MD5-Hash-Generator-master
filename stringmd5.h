@@ -2,7 +2,8 @@
 #define STRINGMD5_H
 
 #include <QDialog>
-#include<string>
+#include <string>
+
 using namespace std;
 
 namespace Ui {

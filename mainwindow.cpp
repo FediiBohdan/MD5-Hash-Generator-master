@@ -9,10 +9,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    QPixmap title(":/title.png");
-    title=title.scaled(521,191,Qt::KeepAspectRatio);
-    ui->label->setAlignment(Qt::AlignCenter);
-    ui->label->setPixmap(title);
 }
 
 MainWindow::~MainWindow()

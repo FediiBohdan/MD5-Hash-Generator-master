@@ -18,12 +18,12 @@ void exhaust_plaintext(string options, unsigned opt_length, unsigned digits, cha
     // count the total number of valid plaintext combinations.
     static unsigned count = 0;
 
-    for (int i = 1; i <= opt_length; i++) {
+    for (unsigned int i = 1; i <= opt_length; i++) {
         // is it the last digit of the plaintext
         if (depth == digits) {
             // copy and store the plaintext combination to plaintext
             // only the last digit is different, that is, the last digit needs to be set separately
-            for (int k=1; k < digits; k++) {
+            for (unsigned int k = 1; k < digits; k++) {
                 plaintext[count][k-1] = plaintext[0][k-1];
             }
             plaintext[count][depth-1] = options[i-1];
@@ -45,7 +45,7 @@ void exhaust_plaintext(string options, unsigned opt_length, unsigned digits, cha
     // determine whether to exhaust all valid combinations.
     if (count == pow(opt_length, digits)) {
         // set plaintext[0] correctly;
-        for (int i = 1; i <= digits; i++) {
+        for (unsigned int i = 1; i <= digits; i++) {
             plaintext[0][i-1] = options[0];
         }
         count=0;
@@ -95,45 +95,45 @@ void BruteForce::on_pushButton_clicked()
     // input check
     if (current.length() == 16 || current.length() == 32)
     {
-        for (i = 0; i<current.length(); i++)
+        for (i = 0; i < current.length(); i++)
         {
-            if ((current[i]> = 'A' && current[i] <= 'Z') || (current[i] >= '0' && current[i] <= '9'));
+            if ((current[i] >= 'A' && current[i] <= 'Z') || (current[i] >= '0' && current[i] <= '9'));
             else break;
         }
         if (i == current.size())
             flag = true;
     }
     if (!flag){
-        QMessageBox::warning(NULL, "Error","Input string should be 16 or 32 length and alphanumeric！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        QMessageBox::warning(NULL, "Error", "Input string should be 16 or 32 length and alphanumeric！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         return;
     }
     if (!ui->checkBox->isChecked() && !ui->checkBox_2->isChecked()
             && !ui->checkBox_3->isChecked() && !ui->checkBox_4->isChecked())
     {
-        QMessageBox::warning(NULL, "Error","Select possible key space！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        QMessageBox::warning(NULL, "Error", "Select possible key space！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         return;
     }
     if (!ui->spinBox->value())
     {
-        QMessageBox::warning(NULL,"Error","Input size can not be 0！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
+        QMessageBox::warning(NULL, "Error", "Input size can not be 0！", QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes);
         return;
     }
     // start
-    string keyspace="";
+    string keyspace = "";
     if (ui->checkBox->isChecked()) keyspace.append(lower);
     if (ui->checkBox_2->isChecked()) keyspace.append(upper);
     if (ui->checkBox_3->isChecked()) keyspace.append(number);
     if (ui->checkBox_4->isChecked()) keyspace.append(symbol);
-    int opt_length = keyspace.length();// number of options
-    int total_length = 0;// maximum number of attempts
-    int cnt = 0;// count the number of attempts
-    for (i=ui->spinBox->value(); i<=ui->spinBox_2->value(); i++)
+    int opt_length = keyspace.length(); // number of options
+    int total_length = 0; // maximum number of attempts
+    int cnt = 0; // count the number of attempts
+    for (i = ui->spinBox->value(); i <= ui->spinBox_2->value(); i++)
     {
         total_length += pow(opt_length, i);
     }
     ui->progressBar->setRange(1, total_length);
     ui->progressBar->setVisible(true);
-    for (i=ui->spinBox->value(); i<=ui->spinBox_2->value(); i++)
+    for (i = ui->spinBox->value(); i <= ui->spinBox_2->value(); i++)
     {
         int digits = i;//Digits
         // dynamic memory allocation: define a dynamic two-dimensional array of rows and columns to store all password combinations
@@ -143,7 +143,7 @@ void BruteForce::on_pushButton_clicked()
 
         // function call, get all plaintext
         exhaust_plaintext(keyspace, opt_length, digits, plaintxt);
-        //匹配
+        // matching
         for (k = 1; k <= pow(opt_length, digits); k++){
             // extract a plaintext
             string s = plaintxt[k-1];
@@ -160,7 +160,7 @@ void BruteForce::on_pushButton_clicked()
                 ui->textBrowser->append(QString("Cracking Successed！Key: ") + QString::fromStdString(s));
               return;
             }
-            //emit updateText(QString("Trying:"+ QString::fromStdString(s) + ".................failed"));
+            // emit updateText(QString("Trying:"+ QString::fromStdString(s) + ".................failed"));
             ui->textBrowser->append(QString("Trying:"+ QString::fromStdString(s) + ".................failed"));
             QApplication::processEvents();
             qDebug()<<QString::fromStdString(s);

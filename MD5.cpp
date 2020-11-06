@@ -25,19 +25,19 @@ inline MD5::uint4 MD5::Rotate(uint4 x, int n) {
   
 // FF, GG, HH, II functional formula
 inline void MD5::FF(uint4 &a, uint4 b, uint4 c, uint4 d, uint4 x, uint4 s, uint4 ac) {
-	a = Rotate(a+ F(b,c,d) + x + ac, s) + b;  
+    a = Rotate(a+ F(b, c, d) + x + ac, s) + b;
 }  
   
 inline void MD5::GG(uint4 &a, uint4 b, uint4 c, uint4 d, uint4 x, uint4 s, uint4 ac) {  
-	a = Rotate(a + G(b,c,d) + x + ac, s) + b;  
+    a = Rotate(a + G(b, c, d) + x + ac, s) + b;
 }  
   
 inline void MD5::HH(uint4 &a, uint4 b, uint4 c, uint4 d, uint4 x, uint4 s, uint4 ac) {  
-	a = Rotate(a + H(b,c,d) + x + ac, s) + b;  
+    a = Rotate(a + H(b, c, d) + x + ac, s) + b;
 }  
   
 inline void MD5::II(uint4 &a, uint4 b, uint4 c, uint4 d, uint4 x, uint4 s, uint4 ac) {  
-	a = Rotate(a + I(b,c,d) + x + ac, s) + b;  
+    a = Rotate(a + I(b, c, d) + x + ac, s) + b;
 }  
    
 MD5::MD5()  
@@ -55,7 +55,7 @@ MD5::MD5()
   
 MD5::MD5(const string &text)  
 {  
-	Resulted=false;  
+    Resulted = false;
 	  
 	count[0] = 0;  
 	count[1] = 0;  
@@ -85,8 +85,7 @@ void MD5::encode(uint1 output[], const uint4 input[], unsigned int len)
 		output[j+2] = (input[i] >> 16) & 0xff;  
 		output[j+3] = (input[i] >> 24) & 0xff;  
 	}  
-}  
-
+}
   
 // four rounds of calculation, substituting 64-bit char or 512 bit
 void MD5::transform(const uint1 block[64])  
@@ -228,7 +227,7 @@ MD5& MD5::Result()
         // convert 128bit hash value to 16 byte char
 		encode(cipher, state, 16);
         
-		Resulted=true;  
+        Resulted = true;
 	}  
   
 	return *this;  
@@ -241,9 +240,9 @@ string MD5::hexcipher16() const
         return "";
 
     char buf[17];
-    for (int i=4; i<12; i++)
+    for (int i = 4; i < 12; i++)
         sprintf(buf+(i-4)*2, "%02x", cipher[i]);
-    buf[16]=0;
+    buf[16] = 0;
 
     return string(buf);
 }

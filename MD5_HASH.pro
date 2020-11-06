@@ -44,6 +44,6 @@ FORMS   += mainwindow.ui \
 DISTFILES +=
 
 RESOURCES += \
-    src.qrc
+    images.qrc
 
-ICON = Icon.icns
+ICON =
