@@ -64,12 +64,12 @@ void filemd5::on_pushButton_2_clicked()
     QFile file(savefilepath);
     file.open( QIODevice::ReadWrite| QIODevice::Append);
     QTextStream out(&file);
-    if(!ui->lineEdit_2->text().isEmpty()){
-        out << "File Directory: "<<openfilepath <<"\n";
-        out << "16-MD5(lowercase): "<<ui->lineEdit_2->text()<<"\n";
-        out << "16-MD5(uppercase): "<<ui->lineEdit_3->text()<<"\n";
-        out << "32-MD5(lowercase): "<<ui->lineEdit_4->text()<<"\n";
-        out << "32-MD5(uppercase): "<<ui->lineEdit_5->text()<<"\n";
+    if (!ui->lineEdit_2->text().isEmpty()){
+        out << "File Directory: " << openfilepath << "\n";
+        out << "16-MD5(lowercase): " << ui->lineEdit_2->text() << "\n";
+        out << "16-MD5(uppercase): " << ui->lineEdit_3->text() << "\n";
+        out << "32-MD5(lowercase): " << ui->lineEdit_4->text() << "\n";
+        out << "32-MD5(uppercase): " << ui->lineEdit_5->text() << "\n";
         out << "\n";
      }
     else

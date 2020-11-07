@@ -29,7 +29,6 @@ stringMD5::~stringMD5()
     delete ui;
 }
 
-
 void stringMD5::on_buttonBox_accepted()
 {
     this->close();
@@ -37,8 +36,8 @@ void stringMD5::on_buttonBox_accepted()
 
 void stringMD5::on_pushButton_clicked()
 {
-    plaintext=ui->lineEdit->text().toStdString();
-    //cout<<plaintext;
+    plaintext = ui->lineEdit->text().toStdString();
+    //cout << plaintext;
     MD5 temp(plaintext);
     ui->lineEdit_2->setText(QString::fromStdString(temp.hexcipher16()));
     ui->lineEdit_3->setText(QString::fromStdString(temp.Hexcipher16()));
@@ -54,11 +53,11 @@ void stringMD5::on_pushButton_2_clicked()
     file.open(QIODevice::ReadWrite|QIODevice::Append);
     QTextStream out(&file);
     if(!ui->lineEdit_2->text().isEmpty()){
-        out << "String Encrypted: "<<QString::fromStdString(plaintext) <<"\n";
-        out << "16-MD5(lowercase): "<<ui->lineEdit_2->text()<<"\n";
-        out << "16-MD5(uppercase): "<<ui->lineEdit_3->text()<<"\n";
-        out << "32-MD5(lowercase): "<<ui->lineEdit_4->text()<<"\n";
-        out << "32-MD5(uppercase): "<<ui->lineEdit_5->text()<<"\n";
+        out << "String Encrypted: " << QString::fromStdString(plaintext) << "\n";
+        out << "16-MD5(lowercase): " << ui->lineEdit_2->text() << "\n";
+        out << "16-MD5(uppercase): " << ui->lineEdit_3->text() << "\n";
+        out << "32-MD5(lowercase): " << ui->lineEdit_4->text() << "\n";
+        out << "32-MD5(uppercase): " << ui->lineEdit_5->text() << "\n";
         out << "\n";
      }
     else

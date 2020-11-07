@@ -48,7 +48,7 @@ void exhaust_plaintext(string options, unsigned opt_length, unsigned digits, cha
         for (unsigned int i = 1; i <= digits; i++) {
             plaintext[0][i-1] = options[0];
         }
-        count=0;
+        count = 0;
     }else{
         // if there is huge amount of all valid plaintext combinations, return to the upper level and continue execution
         depth--;
@@ -62,7 +62,7 @@ BruteForce::BruteForce(QWidget *parent) :
 {
     ui->setupUi(this);
     ui->textBrowser->setReadOnly(true);
-    qDebug()<<QObject::connect(this, SIGNAL(updateText(QString)), this, SLOT(receiveText(QString)));
+    qDebug() << QObject::connect(this, SIGNAL(updateText(QString)), this, SLOT(receiveText(QString)));
     ui->progressBar->setVisible(false);
 }
 
@@ -137,9 +137,9 @@ void BruteForce::on_pushButton_clicked()
     {
         int digits = i;//Digits
         // dynamic memory allocation: define a dynamic two-dimensional array of rows and columns to store all password combinations
-        char **plaintxt = (char**)malloc(sizeof(char*)*pow(opt_length, digits));
+        char **plaintxt = (char**)malloc(sizeof(char*) * pow(opt_length, digits));
         for (j = 1; j <= pow(opt_length, digits); j++)
-            plaintxt[j-1] = (char*)malloc(sizeof(char)*digits);
+            plaintxt[j-1] = (char*)malloc(sizeof(char) * digits);
 
         // function call, get all plaintext
         exhaust_plaintext(keyspace, opt_length, digits, plaintxt);
@@ -156,14 +156,14 @@ void BruteForce::on_pushButton_clicked()
             {
                 // find matching plaintext
                 ui->progressBar->setValue(total_length);
-                ui->textBrowser->append(QString("Trying:"+ QString::fromStdString(s) + ".................Successed！"));
+                ui->textBrowser->append(QString("Trying:" + QString::fromStdString(s) + ".................Successed！"));
                 ui->textBrowser->append(QString("Cracking Successed！Key: ") + QString::fromStdString(s));
               return;
             }
-            // emit updateText(QString("Trying:"+ QString::fromStdString(s) + ".................failed"));
-            ui->textBrowser->append(QString("Trying:"+ QString::fromStdString(s) + ".................failed"));
+            // emit updateText(QString("Trying:" + QString::fromStdString(s) + ".................failed"));
+            ui->textBrowser->append(QString("Trying:" + QString::fromStdString(s) + ".................failed"));
             QApplication::processEvents();
-            qDebug()<<QString::fromStdString(s);
+            qDebug() << QString::fromStdString(s);
 
         }
         for (k = 1; k <= pow(opt_length, digits); k++){

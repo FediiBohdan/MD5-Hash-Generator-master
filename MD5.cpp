@@ -20,12 +20,12 @@ inline MD5::uint4 MD5::I(uint4 x, uint4 y, uint4 z) {
   
 // shift left, used for each operation
 inline MD5::uint4 MD5::Rotate(uint4 x, int n) {
-	return (x << n) | (x >> (32-n));  
+    return (x << n) | (x >> (32 - n));
 }  
   
 // FF, GG, HH, II functional formula
 inline void MD5::FF(uint4 &a, uint4 b, uint4 c, uint4 d, uint4 x, uint4 s, uint4 ac) {
-    a = Rotate(a+ F(b, c, d) + x + ac, s) + b;
+    a = Rotate(a + F(b, c, d) + x + ac, s) + b;
 }  
   
 inline void MD5::GG(uint4 &a, uint4 b, uint4 c, uint4 d, uint4 x, uint4 s, uint4 ac) {  
@@ -42,7 +42,7 @@ inline void MD5::II(uint4 &a, uint4 b, uint4 c, uint4 d, uint4 x, uint4 s, uint4
    
 MD5::MD5()  
 {  
-	Resulted=false;  
+    Resulted = false;
   
 	count[0] = 0;  
 	count[1] = 0;  
@@ -72,8 +72,8 @@ MD5::MD5(const string &text)
 void MD5::decode(uint4 output[], const uint1 input[], unsigned int len)  
 {  
 	for (unsigned int i = 0, j = 0; j < len; i++, j += 4)  
-		output[i] = ((uint4)input[j]) | (((uint4)input[j+1]) << 8) |  
-		(((uint4)input[j+2]) << 16) | (((uint4)input[j+3]) << 24);  
+        output[i] = ((uint4)input[j]) | (((uint4)input[j + 1]) << 8) |
+        (((uint4)input[j + 2]) << 16) | (((uint4)input[j + 3]) << 24);
 }
   
 // store each 32bit int input in 8bit intervals (at the same time for large and small end conversion)
@@ -177,7 +177,7 @@ void MD5::update(const unsigned char input[], unsigned int length)
 {
     unsigned int index = count[0] >> 3 & 0x3F;  // find the remainder of the length modulo 64 (one block) bytes
    
-    if ((count[0] += (length *8)) < (length *8)) // prevent byte overflow
+    if ((count[0] += (length * 8)) < (length * 8)) // prevent byte overflow
         count[1]++;
     count[1] += (length >> 29); // shift 3 bits to the left to find the number of bits, and then shift 32 bits to the right to find the left 32 bits
   
@@ -198,7 +198,7 @@ void MD5::update(const unsigned char input[], unsigned int length)
 	else  
 		i = 0;  
     // also read the last part
-	memcpy(&buffer[index], &input[i], length-i);  
+    memcpy(&buffer[index], &input[i], length - i);
 }  
   
 void MD5::update(const char input[], unsigned int length)
@@ -241,7 +241,7 @@ string MD5::hexcipher16() const
 
     char buf[17];
     for (int i = 4; i < 12; i++)
-        sprintf(buf+(i-4)*2, "%02x", cipher[i]);
+        sprintf(buf + (i - 4) * 2, "%02x", cipher[i]);
     buf[16] = 0;
 
     return string(buf);
@@ -253,9 +253,9 @@ string MD5::Hexcipher16() const
         return "";
 
     char buf[17];
-    for (int i=4; i<12; i++)
-        sprintf(buf+(i-4)*2, "%02X", cipher[i]);
-    buf[16]=0;
+    for (int i = 4; i < 12; i++)
+        sprintf(buf + (i - 4) * 2, "%02X", cipher[i]);
+    buf[16] = 0;
 
     return string(buf);
 }
@@ -266,9 +266,9 @@ string MD5::hexcipher32() const
 		return "";  
   
 	char buf[33];  
-	for (int i=0; i<16; i++)  
-        sprintf(buf+i*2, "%02x", cipher[i]);
-	buf[32]=0;  
+    for (int i = 0; i < 16; i++)
+        sprintf(buf + i * 2, "%02x", cipher[i]);
+    buf[32] = 0;
   
 	return string(buf);
 }
@@ -279,13 +279,12 @@ string MD5::Hexcipher32() const
         return "";
 
     char buf[33];
-    for (int i=0; i<16; i++)
-        sprintf(buf+i*2, "%02X", cipher[i]);
-    buf[32]=0;
+    for (int i = 0; i < 16; i++)
+        sprintf(buf + i * 2, "%02X", cipher[i]);
+    buf[32] = 0;
 
     return string(buf);
 }
-
   
 ostream& operator<<(ostream& out, MD5 md5)  
 {  
