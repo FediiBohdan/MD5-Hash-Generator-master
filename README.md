@@ -1,8 +1,6 @@
 # MD5-Hash-Generator
 An MD5 generator and brute force cracker based on Qt
 
-![image](welcome.png)
-
 ## Screenshots
 
 ### Main Window
